@@ -1,0 +1,13 @@
+<form (ngSubmit)= "submit(crateFormData)"> 
+    <label for="crateSize">crateSize</label>
+    <input type ="number" name="crateSize" [(ngModel)] ="crateFormData.size" />
+
+    <label for="crateName">crateName</label>
+    <input type ="text" name="crateName" [(ngModel)] ="crateFormData.name" />
+
+    <label for="idWarehoues" >idWarehouses</label>
+    <input type ="number" name="idWarehouses" [(ngModel)] ="crateFormData.idWarehouses" />
+
+    <input type ="submit" name="submit" />
+
+</form>

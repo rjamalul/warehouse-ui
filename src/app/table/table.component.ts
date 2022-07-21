@@ -10,6 +10,7 @@ import { Crate } from '../models/Crate';
 
 export class TableComponent implements OnInit {
 
+  crateFormData :Crate;
   value :string = 'Hello'  
   crates :Array<Crate> = [];
   dummy: any;
@@ -19,6 +20,7 @@ export class TableComponent implements OnInit {
   constructor(crateApiService :CrateApiService) {
     //when it's constructed
     this.crateApiService = crateApiService;
+    this.crateFormData = new Crate();
   }
 
   ngOnInit(): void {
@@ -26,11 +28,12 @@ export class TableComponent implements OnInit {
     this.crateApiService.findAll().subscribe(data => {
       this.crates = data;
     });
+  }
 
-    // Add Crate
-    let crate = new Crate(1, 1, "Dummy", 2);
-    this.crateApiService.addCrate(crate).subscribe(response => {      
-      console.log(response);
+  delete(id: any) : void {
+    id = Number(id);
+    this.crateApiService.deleteCrate(id).subscribe(response => {      
+        console.log(response);
     });
   }
 }

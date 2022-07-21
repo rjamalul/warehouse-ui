@@ -56,9 +56,9 @@ export class TableComponent implements OnInit {
     });
   }
 
-  editValues(id: number): void {
+  editValues(crate: Crate): void {
     this.isEditing = true;
-    this.crateEditFormData.id = id;
+    this.crateEditFormData = Object.assign({}, crate);;
   }
 
   cancelEdit(): void {

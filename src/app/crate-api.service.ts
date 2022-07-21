@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Crate } from './models/Crate';
 
 @Injectable({
   providedIn: 'root'
@@ -8,13 +9,19 @@ import { Observable } from 'rxjs';
 
 export class CrateApiService {
   http: HttpClient;
-  baseUrl: string = 'http://localhost:8080/warehouse-service/crates';
+  
 
   constructor(http: HttpClient) {
     this.http = http;
   }
 
   findAll(): Observable<any> {
-    return this.http.get(this.baseUrl);
+    let baseUrl: string = 'http://localhost:8080/warehouse-service/crates';
+    return this.http.get(baseUrl);
+  }
+
+  addCrate(crate: Crate): Observable<any> {
+    let baseUrl: string = 'http://localhost:8080/warehouse-service/crates';
+    return this.http.post(baseUrl, JSON.stringify(crate));
   }
 }

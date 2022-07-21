@@ -1,7 +1,7 @@
 export class Crate {
     id :number;
-    name :String;
     size :number;
+    name :String;
     idWarehouses: number;
     //optional parameters having default values
     constructor(id = 0, size = 0, name = "", idWarehouses = 0){

@@ -22,11 +22,15 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Get Crates
     this.crateApiService.findAll().subscribe(data => {
-      // let jsonObjectString = JSON.stringify(data);        
-      // this.dummy = jsonObjectString;
       this.crates = data;
-      console.log(this.crates);
+    });
+
+    // Add Crate
+    let crate = new Crate(1, 1, "Dummy", 2);
+    this.crateApiService.addCrate(crate).subscribe(response => {      
+      console.log(response);
     });
   }
 }

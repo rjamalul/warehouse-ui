@@ -37,22 +37,19 @@ export class TableComponent implements OnInit {
   delete(id: any) : void {
     id = Number(id);
     this.crateApiService.deleteCrate(id).subscribe(response => {      
-        console.log(response);
+      this.findAll();      
     });
-    this.findAll();
   }
 
   submit(crate :Crate) :void {    
     this.crateApiService.addCrate(crate).subscribe(response => {      
-      console.log(response);
+      this.findAll();
     });
-    this.findAll();
   }
 
   edit(crate: Crate) : void {    
     this.crateApiService.updateCrate(crate).subscribe(response => {      
-      console.log(response);
+      this.findAll();
     });
-    this.findAll();
   }
 }

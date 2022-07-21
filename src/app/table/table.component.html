@@ -20,6 +20,22 @@
         <td>{{temp.name}}</td>
         <td>{{temp.idWarehouses}}</td>
         <button (click)="delete(temp.id)"> Delete </button> 
-        <button (click)="edit(temp)"> Edit </button>
+        <button (click)="editValues(temp.id)"> Edit </button> <!-- edit(temp)-->
     </tr>
 </table>
+
+<div *ngIf="isEditing">
+    <form style="display:inline-block" (ngSubmit)= "edit(crateEditFormData)"> 
+        <label for="crateSize">crateSize</label>
+        <input type ="number" name="crateSize" [(ngModel)] ="crateEditFormData.size" />
+
+        <label for="crateName">crateName</label>
+        <input type ="text" name="crateName" [(ngModel)] ="crateEditFormData.name" />
+
+        <label for="idWarehoues" >idWarehouses</label>
+        <input type ="number" name="idWarehouses" [(ngModel)] ="crateEditFormData.idWarehouses" />
+
+        <input type ="submit" name="submit" value="Edit"/>
+    </form>
+    <button (click)="cancelEdit()">Cancel</button>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { CrateApiService } from '../crate-api.service';
 import { Crate } from '../models/Crate';
 
@@ -9,18 +9,20 @@ import { Crate } from '../models/Crate';
 })
 
 export class TableComponent implements OnInit {
-
-  crateFormData :Crate;
+  crateFormData: Crate;
+  crateEditFormData: Crate;
   value :string = 'Hello'  
   crates :Array<Crate> = [];
   dummy: any;
   crateApiService :CrateApiService;
+  isEditing: boolean = false;
 
   //Angular sees the constructor and notices it has something for that
   constructor(crateApiService :CrateApiService) {
     //when it's constructed
     this.crateApiService = crateApiService;
     this.crateFormData = new Crate();
+    this.crateEditFormData = new Crate();
   }
 
   ngOnInit(): void {
@@ -49,7 +51,17 @@ export class TableComponent implements OnInit {
 
   edit(crate: Crate) : void {    
     this.crateApiService.updateCrate(crate).subscribe(response => {      
+      this.isEditing = false;
       this.findAll();
     });
+  }
+
+  editValues(id: number): void {
+    this.isEditing = true;
+    this.crateEditFormData.id = id;
+  }
+
+  cancelEdit(): void {
+    this.isEditing = false;
   }
 }

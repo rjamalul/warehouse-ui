@@ -8,6 +8,8 @@ import { TableComponent } from './table/table.component';
 import { CrateFormComponent } from './crate-form/crate-form.component';
 import { FormsModule } from '@angular/forms';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +21,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

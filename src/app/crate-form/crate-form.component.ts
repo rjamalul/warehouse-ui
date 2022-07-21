@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Crate } from '../models/Crate';
 import { CrateApiService } from '../crate-api.service';
 
@@ -9,6 +9,7 @@ import { CrateApiService } from '../crate-api.service';
 })
 export class CrateFormComponent implements OnInit {
 
+  @Input() isEditing: boolean = false;
   crateFormData :Crate;
   crateApiService :CrateApiService;
 

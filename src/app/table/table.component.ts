@@ -24,6 +24,10 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.findAll();
+  }
+
+  findAll() {
     // Get Crates
     this.crateApiService.findAll().subscribe(data => {
       this.crates = data;
@@ -35,5 +39,20 @@ export class TableComponent implements OnInit {
     this.crateApiService.deleteCrate(id).subscribe(response => {      
         console.log(response);
     });
+    this.findAll();
+  }
+
+  submit(crate :Crate) :void {    
+    this.crateApiService.addCrate(crate).subscribe(response => {      
+      console.log(response);
+    });
+    this.findAll();
+  }
+
+  edit(crate: Crate) : void {    
+    this.crateApiService.updateCrate(crate).subscribe(response => {      
+      console.log(response);
+    });
+    this.findAll();
   }
 }

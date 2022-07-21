@@ -1,3 +1,16 @@
+<form (ngSubmit)= "submit(crateFormData)"> 
+    <label for="crateSize">crateSize</label>
+    <input type ="number" name="crateSize" [(ngModel)] ="crateFormData.size" />
+
+    <label for="crateName">crateName</label>
+    <input type ="text" name="crateName" [(ngModel)] ="crateFormData.name" />
+
+    <label for="idWarehoues" >idWarehouses</label>
+    <input type ="number" name="idWarehouses" [(ngModel)] ="crateFormData.idWarehouses" />
+
+    <input type ="submit" name="submit" />
+
+</form>
 <table>
     <tr> <th>IdCrate</th><th>crateSize</th> <th>crateName</th><th>idWarehouses</th> </tr>
     <!-- * structural directive does DOM manipulation-->
@@ -6,7 +19,7 @@
         <td>{{temp.size}}</td>
         <td>{{temp.name}}</td>
         <td>{{temp.idWarehouses}}</td>
-        <!-- <button value="{{temp.id}}" > Delete </button> ngClick(value) -->
-        <button value="{{temp.id}}" (click)= "delete(temp.id)">Delete</button> 
+        <button (click)="delete(temp.id)"> Delete </button> 
+        <button (click)="edit(temp)"> Edit </button>
     </tr>
 </table>

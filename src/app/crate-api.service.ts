@@ -35,4 +35,10 @@ export class CrateApiService {
     let baseUrl: string = 'http://localhost:8080/warehouse-service/crates?id=' + id;
     return this.http.delete(baseUrl, options);
   }
+
+  updateCrate(crate: Crate): Observable<any> {
+    let baseUrl: string = 'http://localhost:8080/warehouse-service/crates/update';
+    return this.http.post(baseUrl, JSON.stringify(crate));
+  }
+
 }

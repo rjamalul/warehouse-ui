@@ -1,12 +1,10 @@
-
-
 <table>
-    <tr> <th>IdCrate</th><th>crateName</th> <th>crateSize</th> </tr>
+    <tr> <th>IdCrate</th><th>crateName</th> <th>crateSize</th><th>idWarehouses</th> </tr>
     <!-- * structural directive does DOM manipulation-->
     <tr *ngFor="let temp of crates">
-        <td>{{temp.idcrate}}</td>
-        <td>{{temp.crateName}}</td>
-        <td>{{temp.crateSize}}</td>
-
+        <td>{{temp.id}}</td>
+        <td>{{temp.size}}</td>
+        <td>{{temp.name}}</td>
+        <td>{{temp.idWarehouses}}</td>
     </tr>
 </table>

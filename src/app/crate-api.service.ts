@@ -1,13 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Crate } from './models/Crate'
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CrateApiService {
 
-  constructor() { }
-  findAll() :Array<Crate> {
-    return [new Crate(1, "Food", 500), new Crate(2, "Clothes", 250), new Crate(3, "Food", 500)]
+export class CrateApiService {
+  http: HttpClient;
+  baseUrl: string = 'http://localhost:8080/warehouse-service/crates';
+
+  constructor(http: HttpClient) {
+    this.http = http;
+  }
+
+  findAll(): Observable<any> {
+    return this.http.get(this.baseUrl);
   }
 }

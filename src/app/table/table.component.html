@@ -10,64 +10,63 @@
     </div>
 </div>
 
-<form (ngSubmit)= "submit(crateFormData)"> 
-    <label for="crateName">Name</label>
-    <span class="GroupItem"><input type ="text" name="crateName" [(ngModel)] ="crateFormData.crateName" /></span>
-
-    <label for="crateSize">Size</label>
-    <span class="GroupItem"><input type ="number" name="crateSize" [(ngModel)] ="crateFormData.crateSize" /></span>
-
-    <label for="warehouseId">Warehouse ID</label>
-    <span class="GroupItem"><input type ="number" name="warehouseId" [(ngModel)] ="crateFormData.warehouseId" /></span>
-
-    <input type ="submit" name="submit" />
-</form>
-
-<table class="table center">
-    <thead>
-        <tr>
-            <th scope="col">Crate ID</th> 
-            <th scope="col">Name</th> 
-            <th scope="col">Size</th> 
-            <th scope="col">Warehouse ID</th> 
-        </tr>
-    </thead>
-    <tbody>
-    <!-- * structural directive does DOM manipulation-->
-    <tr scope="row" *ngFor="let crate of crates">
-        <td>{{crate.crateId}}</td>
-        <td>{{crate.crateName}}</td>
-        <td>{{crate.crateSize}}</td>
-        <td>{{crate.warehouseId}}</td>
-        <span class="GroupItem"><button type="button" class="btn btn-dark" (click)="editValues(crate)"> Edit </button></span>
-        <span class="GroupItem"><button type="button" class="btn btn-dark" (click)="delete(crate.crateId)"> Delete </button></span>
-    </tr>
-    <!-- <tr scope="row" *ngFor="let warehouse of warehouses">
-        <td>{{warehouse.warehouseId}}</td>
-        <td>{{warehouse.warehouseName}}</td>
-        <td>{{warehouse.currentCapacity}}</td>
-        <td>{{warehouse.maxCapacity}}</td>
-        <span class="GroupItem"><button type="button" class="btn btn-dark" (click)="editValues(warehouse)"> Edit </button></span>
-        <span class="GroupItem"><button type="button" class="btn btn-dark" (click)="delete(warehouse.crateId)"> Delete </button></span>
-    </tr> -->
-</tbody>
-</table>
-
-<div *ngIf="isEditing">
-    <form style="display:inline-block" (ngSubmit)= "edit(crateEditFormData)"> 
-        <label for="crateSize"><b>IdCrate</b></label>
-        <span class="GroupItem">{{crateEditFormData.crateId}}</span>
-
-        <label for="crateName"><b>Name</b></label>
-        <span class="GroupItem"><input class="editGroupItem" type ="text" name="crateName" [(ngModel)] ="crateEditFormData.crateName" /></span>
-
-        <label for="crateSize"><b>Size</b></label>
-        <span class="GroupItem"><input class="editGroupItem" class="editGroupItem" type ="number" name="crateSize" [(ngModel)] ="crateEditFormData.crateSize" /></span>
-
-        <label for="idWarehoues" ><b>Warehouse ID</b></label>
-        <span class="GroupItem"><input class="editGroupItem" type ="number" name="warehouseId" [(ngModel)] ="crateEditFormData.warehouseId" /></span>
-
-        <span class="GroupItem"><input type ="submit" name="submit" value="Edit"/></span>
-    </form>
-    <button type="button" class="btn btn-dark" (click)="cancelEdit()">Cancel</button>
+<div style="margin: auto; width: 100%;">
+    <div style="margin: auto; width: 50%;">
+        <form (ngSubmit)= "submit(crateFormData)"> 
+            <label for="crateName">Name</label>
+            <span class="GroupItem"><input type ="text" name="crateName" [(ngModel)] ="crateFormData.crateName" /></span>
+        
+            <label for="crateSize">Size</label>
+            <span class="GroupItem"><input type ="number" name="crateSize" [(ngModel)] ="crateFormData.crateSize" /></span>
+        
+            <label for="warehouseId">Warehouse ID</label>
+            <span class="GroupItem"><input type ="number" name="warehouseId" [(ngModel)] ="crateFormData.warehouseId" /></span>
+        
+            <input type ="submit" name="submit" />
+        </form>
+    </div>
+    <div style="margin: auto; width: 50%;">
+        <table class="table center">
+            <thead>
+                <tr>
+                    <th scope="col">Crate ID</th> 
+                    <th scope="col">Name</th> 
+                    <th scope="col">Size</th> 
+                    <th scope="col">Warehouse ID</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <!-- * structural directive does DOM manipulation-->
+                <tr scope="row" *ngFor="let crate of crates">
+                    <td>{{crate.crateId}}</td>
+                    <td>{{crate.crateName}}</td>
+                    <td>{{crate.crateSize}}</td>
+                    <td>{{crate.warehouseId}}</td>
+                    <span class="GroupItem"><button type="button" class="btn btn-dark" (click)="editValues(crate)"> Edit </button></span>
+                    <span class="GroupItem"><button type="button" class="btn btn-dark" (click)="delete(crate.crateId)"> Delete </button></span>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div style="margin: auto; width: 55%;">
+        <div *ngIf="isEditing">
+            <form style="display:inline-block" (ngSubmit)= "edit(crateEditFormData)"> 
+                <label for="crateSize"><b>IdCrate</b></label>
+                <span class="GroupItem">{{crateEditFormData.crateId}}</span>
+        
+                <label for="crateName"><b>Name</b></label>
+                <span class="GroupItem"><input class="editGroupItem" type ="text" name="crateName" [(ngModel)] ="crateEditFormData.crateName" /></span>
+        
+                <label for="crateSize"><b>Size</b></label>
+                <span class="GroupItem"><input class="editGroupItem" class="editGroupItem" type ="number" name="crateSize" [(ngModel)] ="crateEditFormData.crateSize" /></span>
+        
+                <label for="idWarehoues" ><b>Warehouse ID</b></label>
+                <span class="GroupItem"><input class="editGroupItem" type ="number" name="warehouseId" [(ngModel)] ="crateEditFormData.warehouseId" /></span>
+        
+                <span class="GroupItem"><input type ="submit" name="submit" value="Edit"/></span>
+            </form>
+            <button type="button" class="btn btn-dark" (click)="cancelEdit()">Cancel</button>
+        </div>
+    </div>    
 </div>

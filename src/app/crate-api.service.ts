@@ -37,14 +37,14 @@ export class CrateApiService {
     return this.http.post(baseUrl, JSON.stringify(crate));
   }
 
-  deleteCrate(id: number): Observable<any> {
+  deleteCrate(id: number, warehouseId: number): Observable<any> {
     let httpheaders = new HttpHeaders().set('Content-type','application/Json');
 
     let options = {
       headers:httpheaders
     };
 
-    let baseUrl: string = 'http://localhost:8080/warehouse-service/crates?id=' + id;
+    let baseUrl: string = 'http://localhost:8080/warehouse-service/crates?id=' + id + "&warehouseId=" + warehouseId;
     return this.http.delete(baseUrl, options);
   }
 

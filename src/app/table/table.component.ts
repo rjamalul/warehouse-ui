@@ -53,7 +53,8 @@ export class TableComponent implements OnInit {
 
   delete(id: any) : void {
     id = Number(id);
-    this.crateApiService.deleteCrate(id).subscribe(response => {      
+    let warehouseId = this.warehouse.warehouseId;
+    this.crateApiService.deleteCrate(id, warehouseId).subscribe(response => {      
       this.getCratesByWarehouseId(this.warehouseId);      
     });
   }

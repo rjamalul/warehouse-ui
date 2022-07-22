@@ -2,7 +2,7 @@
     <select #warehouseSelect style="display: block; margin: 0 auto; width: 30%; height:10%;" (change)="getCratesInWarehouse(warehouseSelect.value)"> <!--  -->  <!-- (ngModelChange)="onChange($event)" -->
         <option [value]="" disabled selected>Select Warehouse</option>
         <option *ngFor="let warehouse of warehouses" [value]="warehouse.warehouseId">
-            {{warehouse.warehouseName}}
+            {{warehouse.warehouseName}} ({{warehouse.warehouseId}})
         </option>
     </select>  
     <div style="display: block; margin: 0 auto; width: 30%; height:10%;">

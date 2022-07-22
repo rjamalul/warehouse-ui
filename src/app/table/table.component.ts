@@ -82,7 +82,7 @@ export class TableComponent implements OnInit {
 
   getCratesInWarehouse(warehouseId: string): void {
     console.log(warehouseId);
-    this.warehouseId = Number(warehouseId);
+    this.warehouseId = Number(warehouseId); 
     this.getCratesByWarehouseId(Number(this.warehouseId));
   }
 
@@ -99,6 +99,5 @@ export class TableComponent implements OnInit {
     })
 
     this.warehouse = tempWarehouses[0];
-    this.getWarehouse(this.warehouseId);
   }
 }

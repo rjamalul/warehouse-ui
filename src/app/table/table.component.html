@@ -1,3 +1,12 @@
+<div style="padding-bottom: 50px;">
+    <select #warehouseSelect style="display: block; margin: 0 auto; width: 30%; height:10%;" (change)="getCratesInWarehouse(warehouseSelect.value)"> <!--  -->  <!-- (ngModelChange)="onChange($event)" -->
+        <option [value]="" disabled selected>Select Warehouse</option>
+        <option *ngFor="let warehouse of warehouses" [value]="warehouse.warehouseId">
+            {{warehouse.warehouseName}}
+        </option>
+    </select>  
+</div>
+
 <form (ngSubmit)= "submit(crateFormData)"> 
     <label for="crateName">Name</label>
     <span class="GroupItem"><input type ="text" name="crateName" [(ngModel)] ="crateFormData.crateName" /></span>
@@ -9,7 +18,6 @@
     <span class="GroupItem"><input type ="number" name="warehouseId" [(ngModel)] ="crateFormData.warehouseId" /></span>
 
     <input type ="submit" name="submit" />
-
 </form>
 
 <table class="table center">
@@ -31,6 +39,14 @@
         <span class="GroupItem"><button type="button" class="btn btn-dark" (click)="editValues(crate)"> Edit </button></span>
         <span class="GroupItem"><button type="button" class="btn btn-dark" (click)="delete(crate.crateId)"> Delete </button></span>
     </tr>
+    <!-- <tr scope="row" *ngFor="let warehouse of warehouses">
+        <td>{{warehouse.warehouseId}}</td>
+        <td>{{warehouse.warehouseName}}</td>
+        <td>{{warehouse.currentCapacity}}</td>
+        <td>{{warehouse.maxCapacity}}</td>
+        <span class="GroupItem"><button type="button" class="btn btn-dark" (click)="editValues(warehouse)"> Edit </button></span>
+        <span class="GroupItem"><button type="button" class="btn btn-dark" (click)="delete(warehouse.crateId)"> Delete </button></span>
+    </tr> -->
 </tbody>
 </table>
 

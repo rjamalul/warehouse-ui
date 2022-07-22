@@ -1,6 +1,8 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { CrateApiService } from '../crate-api.service';
 import { Crate } from '../models/Crate';
+import { Warehouse } from '../models/Warehouse';
+import { WarehouseApiService } from '../warehouse-api.service';
 
 @Component({
   selector: 'app-table',
@@ -13,20 +15,25 @@ export class TableComponent implements OnInit {
   crateEditFormData: Crate;
   value :string = 'Hello'  
   crates :Array<Crate> = [];
+  warehouses :Array<Warehouse> = [];
   dummy: any;
-  crateApiService :CrateApiService;
+  crateApiService: CrateApiService;
+  warehouseApiService: WarehouseApiService;
   isEditing: boolean = false;
+  warehouseId: number = -1;
 
   //Angular sees the constructor and notices it has something for that
-  constructor(crateApiService :CrateApiService) {
+  constructor(crateApiService :CrateApiService, warehouseApiService: WarehouseApiService) {
     //when it's constructed
     this.crateApiService = crateApiService;
+    this.warehouseApiService = warehouseApiService;
     this.crateFormData = new Crate();
     this.crateEditFormData = new Crate();
   }
 
   ngOnInit(): void {
-    this.findAll();
+    // this.findAll();
+    this.getWarehouses();    
   }
 
   findAll() {
@@ -36,23 +43,29 @@ export class TableComponent implements OnInit {
     });
   }
 
+  getWarehouses() {
+    this.warehouseApiService.getWarehouses().subscribe(data => {
+      this.warehouses = data;
+    });
+  }
+
   delete(id: any) : void {
     id = Number(id);
     this.crateApiService.deleteCrate(id).subscribe(response => {      
-      this.findAll();      
+      this.getCratesByWarehouseId(this.warehouseId);      
     });
   }
 
   submit(crate :Crate) :void {    
     this.crateApiService.addCrate(crate).subscribe(response => {      
-      this.findAll();
+      this.getCratesByWarehouseId(this.warehouseId);      
     });
   }
 
   edit(crate: Crate) : void {    
     this.crateApiService.updateCrate(crate).subscribe(response => {      
       this.isEditing = false;
-      this.findAll();
+      this.getCratesByWarehouseId(this.warehouseId);      
     });
   }
 
@@ -63,5 +76,17 @@ export class TableComponent implements OnInit {
 
   cancelEdit(): void {
     this.isEditing = false;
+  }
+
+  getCratesInWarehouse(warehouseId: string): void {
+    console.log(warehouseId);
+    this.warehouseId = Number(warehouseId);
+    this.getCratesByWarehouseId(Number(this.warehouseId));
+  }
+
+  getCratesByWarehouseId(warehouseId: number) {
+    this.crateApiService.getCratesInWarehouse(warehouseId).subscribe(data => {
+      this.crates = data;
+    });
   }
 }

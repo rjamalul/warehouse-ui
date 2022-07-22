@@ -20,6 +20,18 @@ export class CrateApiService {
     return this.http.get(baseUrl);
   }
 
+  getCratesInWarehouse(warehouseId: number): Observable<any> {
+    let httpheaders = new HttpHeaders().set('Content-type','application/Json');
+
+    let options = {
+      headers:httpheaders
+    };
+
+    let baseUrl: string = 'http://localhost:8080/warehouse-service/crates/warehouse?id=' + warehouseId;
+
+    return this.http.get(baseUrl);    
+  }
+
   addCrate(crate: Crate): Observable<any> {
     let baseUrl: string = 'http://localhost:8080/warehouse-service/crates';
     return this.http.post(baseUrl, JSON.stringify(crate));
@@ -40,5 +52,4 @@ export class CrateApiService {
     let baseUrl: string = 'http://localhost:8080/warehouse-service/crates/update';
     return this.http.post(baseUrl, JSON.stringify(crate));
   }
-
 }

@@ -21,6 +21,7 @@ export class TableComponent implements OnInit {
   warehouseApiService: WarehouseApiService;
   isEditing: boolean = false;
   warehouseId: number = -1;
+  warehouse: Warehouse;
 
   //Angular sees the constructor and notices it has something for that
   constructor(crateApiService :CrateApiService, warehouseApiService: WarehouseApiService) {
@@ -29,6 +30,7 @@ export class TableComponent implements OnInit {
     this.warehouseApiService = warehouseApiService;
     this.crateFormData = new Crate();
     this.crateEditFormData = new Crate();
+    this.warehouse = new Warehouse();
   }
 
   ngOnInit(): void {
@@ -85,8 +87,18 @@ export class TableComponent implements OnInit {
   }
 
   getCratesByWarehouseId(warehouseId: number) {
+    this.getWarehouse(warehouseId);
     this.crateApiService.getCratesInWarehouse(warehouseId).subscribe(data => {
       this.crates = data;
     });
+  }
+
+  getWarehouse(warehouseId: number) {
+    let tempWarehouses = this.warehouses.filter(function(warehouse){
+      return (warehouse.warehouseId == warehouseId);
+    })
+
+    this.warehouse = tempWarehouses[0];
+    this.getWarehouse(this.warehouseId);
   }
 }

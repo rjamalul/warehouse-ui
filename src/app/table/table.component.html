@@ -5,6 +5,9 @@
             {{warehouse.warehouseName}}
         </option>
     </select>  
+    <div style="display: block; margin: 0 auto; width: 30%; height:10%;">
+        Warehouse Max Capacity: {{this.warehouse.maxCapacity}}
+    </div>
 </div>
 
 <form (ngSubmit)= "submit(crateFormData)"> 

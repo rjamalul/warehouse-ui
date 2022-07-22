@@ -4,7 +4,7 @@ export class Crate {
     crateName :String;
     warehouseId: number;
     //optional parameters having default values
-    constructor(crateId = 0, crateSize = 1, crateName = "", warehouseId = 0){
+    constructor(crateId = 0, crateSize = 1, crateName = "", warehouseId = 1){
         this.crateId=crateId;
         this.crateSize=crateSize;
         this.crateName=crateName;

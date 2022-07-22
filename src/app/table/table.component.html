@@ -1,4 +1,6 @@
 <div style="padding-bottom: 50px;"> <!-- drop down with select-->
+    <!-- NgOnInit populates the dropdown-->
+    <!--Selecting a value will trigger the (change) function, querying all crates in the selected warehouse -->
     <select #warehouseSelect style="display: block; margin: 0 auto; width: 30%; height:10%;" (change)="getCratesInWarehouse(warehouseSelect.value)"> <!--  -->  <!-- (ngModelChange)="onChange($event)" -->
         <option [value]="" disabled selected>Select Warehouse</option>
         <option *ngFor="let warehouse of warehouses" [value]="warehouse.warehouseId"> 
@@ -10,7 +12,7 @@
     </div>
 </div>
 
-<div style="margin: auto; width: 100%;">
+<div style="margin: auto; width: 100%;"> <!-- Beginning of the submit form-->
     <div style="margin: auto; width: 50%;">
         <form (ngSubmit)= "submit(crateFormData)"> <!-- Submits new crate data-->
             <label for="crateName">Name</label>
@@ -25,7 +27,7 @@
             <input type ="submit" name="submit" />
         </form>
     </div>
-    <div style="margin: auto; width: 50%;">
+    <div style="margin: auto; width: 50%;"> <!--Beginning of the table-->
         <table class="table center">
             <thead>
                 <tr>
@@ -50,7 +52,7 @@
     </div>
     
     <div style="margin: auto; width: 55%;"> <!-- shows edit form-->
-        <div *ngIf="isEditing">
+        <div *ngIf="isEditing"> <!-- Boolean to show edit form or not -->
             <form style="display:inline-block" (ngSubmit)= "edit(crateEditFormData)"> 
                 <label for="crateSize"><b>IdCrate</b></label>
                 <span class="GroupItem">{{crateEditFormData.crateId}}</span>
@@ -66,7 +68,7 @@
         
                 <span class="GroupItem"><input type ="submit" name="submit" value="Edit"/></span> <!-- Submit edit-->
             </form>
-            <button type="button" class="btn btn-dark" (click)="cancelEdit()">Cancel</button> <!-- Cancel Edit with cancelEdit function -->
+            <button type="button" class="btn btn-dark" (click)="cancelEdit()">Cancel</button> <!-- Cancel Edit with cancelEdit function: cancelEdit() {this.isEditing = false;}  -->
         </div>
     </div>    
 </div>

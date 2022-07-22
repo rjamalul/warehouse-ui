@@ -45,7 +45,8 @@ export class TableComponent implements OnInit {
     });
   }
 
-  getWarehouses() {
+  getWarehouses() { //getWarehouses() function calls warehouseApiService function getWarehouses()
+    //subscribes for an observable returning data assigned to global warehouses var
     this.warehouseApiService.getWarehouses().subscribe(data => {
       this.warehouses = data;
     });
@@ -87,9 +88,10 @@ export class TableComponent implements OnInit {
     this.getCratesByWarehouseId(Number(this.warehouseId));
   }
 
+  //takes crates in a warehouse by Id and stores the data into crates
   getCratesByWarehouseId(warehouseId: number) {
     this.getWarehouse(warehouseId);
-    this.crateApiService.getCratesInWarehouse(warehouseId).subscribe(data => { //takes crates in a warehouse by Id and stores the data into crates
+    this.crateApiService.getCratesInWarehouse(warehouseId).subscribe(data => { 
       this.crates = data;
     });
   }

@@ -6,7 +6,7 @@ import { Crate } from './models/Crate';
 @Injectable({
   providedIn: 'root'
 })
-
+//The httprequest of any kind like get, post, delete etc.
 export class CrateApiService {
   http: HttpClient;
   

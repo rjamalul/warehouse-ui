@@ -1,18 +1,18 @@
-<div style="padding-bottom: 50px;">
+<div style="padding-bottom: 50px;"> <!-- drop down with select-->
     <select #warehouseSelect style="display: block; margin: 0 auto; width: 30%; height:10%;" (change)="getCratesInWarehouse(warehouseSelect.value)"> <!--  -->  <!-- (ngModelChange)="onChange($event)" -->
         <option [value]="" disabled selected>Select Warehouse</option>
-        <option *ngFor="let warehouse of warehouses" [value]="warehouse.warehouseId">
+        <option *ngFor="let warehouse of warehouses" [value]="warehouse.warehouseId"> 
             {{warehouse.warehouseName}} ({{warehouse.warehouseId}})
         </option>
     </select>  
     <div style="display: block; margin: 0 auto; width: 30%; height:10%;">
-        Warehouse Max Capacity: {{this.warehouse.maxCapacity}}
+        Warehouse Max Capacity: {{this.warehouse.maxCapacity}} <!-- displays Max warehouse capacity at the top-->
     </div>
 </div>
 
 <div style="margin: auto; width: 100%;">
     <div style="margin: auto; width: 50%;">
-        <form (ngSubmit)= "submit(crateFormData)"> 
+        <form (ngSubmit)= "submit(crateFormData)"> <!-- Submits new crate data-->
             <label for="crateName">Name</label>
             <span class="GroupItem"><input type ="text" name="crateName" [(ngModel)] ="crateFormData.crateName" /></span>
         
@@ -42,14 +42,14 @@
                     <td>{{crate.crateName}}</td>
                     <td>{{crate.crateSize}}</td>
                     <td>{{crate.warehouseId}}</td>
-                    <span class="GroupItem"><button type="button" class="btn btn-dark" (click)="editValues(crate)"> Edit </button></span>
-                    <span class="GroupItem"><button type="button" class="btn btn-dark" (click)="delete(crate.crateId)"> Delete </button></span>
+                    <span class="GroupItem"><button type="button" class="btn btn-dark" (click)="editValues(crate)"> Edit </button></span> <!-- edit button with editValues function and passing crate-->
+                    <span class="GroupItem"><button type="button" class="btn btn-dark" (click)="delete(crate.crateId)"> Delete </button></span> <!-- delete button with delete function with crateId-->
                 </tr>
             </tbody>
         </table>
     </div>
     
-    <div style="margin: auto; width: 55%;">
+    <div style="margin: auto; width: 55%;"> <!-- shows edit form-->
         <div *ngIf="isEditing">
             <form style="display:inline-block" (ngSubmit)= "edit(crateEditFormData)"> 
                 <label for="crateSize"><b>IdCrate</b></label>
@@ -64,9 +64,9 @@
                 <label for="idWarehoues" ><b>Warehouse ID</b></label>
                 <span class="GroupItem"><input class="editGroupItem" type ="number" name="warehouseId" [(ngModel)] ="crateEditFormData.warehouseId" /></span>
         
-                <span class="GroupItem"><input type ="submit" name="submit" value="Edit"/></span>
+                <span class="GroupItem"><input type ="submit" name="submit" value="Edit"/></span> <!-- Submit edit-->
             </form>
-            <button type="button" class="btn btn-dark" (click)="cancelEdit()">Cancel</button>
+            <button type="button" class="btn btn-dark" (click)="cancelEdit()">Cancel</button> <!-- Cancel Edit with cancelEdit function -->
         </div>
     </div>    
 </div>

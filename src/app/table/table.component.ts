@@ -88,7 +88,7 @@ export class TableComponent implements OnInit {
 
   getCratesByWarehouseId(warehouseId: number) {
     this.getWarehouse(warehouseId);
-    this.crateApiService.getCratesInWarehouse(warehouseId).subscribe(data => {
+    this.crateApiService.getCratesInWarehouse(warehouseId).subscribe(data => { //takes crates in a warehouse by Id and stores the data into crates
       this.crates = data;
     });
   }

@@ -1,13 +1,13 @@
 export class Crate {
-    id :number;
-    size :number;
-    name :String;
-    idWarehouses: number;
+    crateId :number;
+    crateSize :number;
+    crateName :String;
+    warehouseId: number;
     //optional parameters having default values
-    constructor(id = 0, size = 0, name = "", idWarehouses = 0){
-        this.id=id;
-        this.size=size;
-        this.name=name;
-        this.idWarehouses=idWarehouses;
+    constructor(crateId = 0, crateSize = 1, crateName = "", warehouseId = 0){
+        this.crateId=crateId;
+        this.crateSize=crateSize;
+        this.crateName=crateName;
+        this.warehouseId=warehouseId;
     }
 }

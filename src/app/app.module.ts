@@ -5,25 +5,25 @@ import { HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TableComponent } from './table/table.component';
-import { CrateFormComponent } from './crate-form/crate-form.component';
 import { FormsModule } from '@angular/forms';
-
-
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TableComponent,
-    CrateFormComponent
+    TableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
-    
+    FormsModule,
+    InputTextModule,
+    ButtonModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

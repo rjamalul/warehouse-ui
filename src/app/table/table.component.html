@@ -1,44 +1,54 @@
 <form (ngSubmit)= "submit(crateFormData)"> 
     <label for="crateName">Name</label>
-    <span class="GroupItem"><input type ="text" name="crateName" [(ngModel)] ="crateFormData.name" /></span>
+    <span class="GroupItem"><input type ="text" name="crateName" [(ngModel)] ="crateFormData.crateName" /></span>
 
     <label for="crateSize">Size</label>
-    <span class="GroupItem"><input type ="number" name="crateSize" [(ngModel)] ="crateFormData.size" /></span>
+    <span class="GroupItem"><input type ="number" name="crateSize" [(ngModel)] ="crateFormData.crateSize" /></span>
 
-    <label for="idWarehoues">Warehouse ID</label>
-    <span class="GroupItem"><input type ="number" name="idWarehouses" [(ngModel)] ="crateFormData.idWarehouses" /></span>
+    <label for="warehouseId">Warehouse ID</label>
+    <span class="GroupItem"><input type ="number" name="warehouseId" [(ngModel)] ="crateFormData.warehouseId" /></span>
 
     <input type ="submit" name="submit" />
 
 </form>
-<table>
-    <tr> <th>Crate ID</th> <th>Name</th> <th>Size</th> <th>Warehouse ID</th> </tr>
+
+<table class="table center">
+    <thead>
+        <tr>
+            <th scope="col">Crate ID</th> 
+            <th scope="col">Name</th> 
+            <th scope="col">Size</th> 
+            <th scope="col">Warehouse ID</th> 
+        </tr>
+    </thead>
+    <tbody>
     <!-- * structural directive does DOM manipulation-->
-    <tr *ngFor="let temp of crates">
-        <td>{{temp.id}}</td>
-        <td>{{temp.name}}</td>
-        <td>{{temp.size}}</td>
-        <td>{{temp.idWarehouses}}</td>
-        <span class="GroupItem"><button (click)="editValues(temp)"> Edit </button></span>
-        <span class="GroupItem"><button (click)="delete(temp.id)"> Delete </button></span>
+    <tr scope="row" *ngFor="let crate of crates">
+        <td>{{crate.crateId}}</td>
+        <td>{{crate.crateName}}</td>
+        <td>{{crate.crateSize}}</td>
+        <td>{{crate.warehouseId}}</td>
+        <span class="GroupItem"><button type="button" class="btn btn-dark" (click)="editValues(crate)"> Edit </button></span>
+        <span class="GroupItem"><button type="button" class="btn btn-dark" (click)="delete(crate.crateId)"> Delete </button></span>
     </tr>
+</tbody>
 </table>
 
 <div *ngIf="isEditing">
     <form style="display:inline-block" (ngSubmit)= "edit(crateEditFormData)"> 
         <label for="crateSize"><b>IdCrate</b></label>
-        <span class="GroupItem">{{crateEditFormData.id}}</span>
+        <span class="GroupItem">{{crateEditFormData.crateId}}</span>
 
         <label for="crateName"><b>Name</b></label>
-        <span class="GroupItem"><input class="editGroupItem" type ="text" name="crateName" [(ngModel)] ="crateEditFormData.name" /></span>
+        <span class="GroupItem"><input class="editGroupItem" type ="text" name="crateName" [(ngModel)] ="crateEditFormData.crateName" /></span>
 
         <label for="crateSize"><b>Size</b></label>
-        <span class="GroupItem"><input class="editGroupItem" class="editGroupItem" type ="number" name="crateSize" [(ngModel)] ="crateEditFormData.size" /></span>
+        <span class="GroupItem"><input class="editGroupItem" class="editGroupItem" type ="number" name="crateSize" [(ngModel)] ="crateEditFormData.crateSize" /></span>
 
         <label for="idWarehoues" ><b>Warehouse ID</b></label>
-        <span class="GroupItem"><input class="editGroupItem" type ="number" name="idWarehouses" [(ngModel)] ="crateEditFormData.idWarehouses" /></span>
+        <span class="GroupItem"><input class="editGroupItem" type ="number" name="warehouseId" [(ngModel)] ="crateEditFormData.warehouseId" /></span>
 
         <span class="GroupItem"><input type ="submit" name="submit" value="Edit"/></span>
     </form>
-    <button (click)="cancelEdit()">Cancel</button>
+    <button type="button" class="btn btn-dark" (click)="cancelEdit()">Cancel</button>
 </div>
